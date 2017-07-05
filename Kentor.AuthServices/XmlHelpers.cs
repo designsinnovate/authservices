@@ -324,10 +324,13 @@ namespace Kentor.AuthServices
                         "Certificate validation enabled, but the signing key identifier is of type {0} which cannot be validated as a certificate.",
                         keyIdentifier.GetType().Name));
                 }
-
-                if (!new X509Certificate2(rawCert.GetX509RawData()).Verify())
+                using (var cert = new X509Certificate2(rawCert.GetX509RawData()))
                 {
-                    throw new InvalidSignatureException("The signature was valid, but the verification of the certificate failed. Is it expired or revoked? Are you sure you really want to enable ValidateCertificates (it's normally not needed)?");
+                    if (!cert.Verify())
+                    {
+                        throw new InvalidSignatureException(
+                            "The signature was valid, but the verification of the certificate failed. Is it expired or revoked? Are you sure you really want to enable ValidateCertificates (it's normally not needed)?");
+                    }
                 }
             }
         }
