@@ -20,5 +20,9 @@ namespace Kentor.AuthServices.StubIdp.Models
         public string CustomDescription { get; set; }
 
         public bool HideDetails { get; set; }
+
+        [Required]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
     }
 }

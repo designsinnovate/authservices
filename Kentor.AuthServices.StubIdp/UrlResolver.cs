@@ -20,6 +20,10 @@ namespace Kentor.AuthServices.StubIdp
             {
                 return new Uri(HttpContext.Current.Request.Url, HttpContext.Current.Request.ApplicationPath + namedIdpSegment + path);
             }
+            if (!HttpContext.Current.Request.ApplicationPath.EndsWith("/"))
+            {
+                return new Uri(HttpContext.Current.Request.Url, HttpContext.Current.Request.ApplicationPath + "/" + path);
+            }
             return new Uri(HttpContext.Current.Request.Url, HttpContext.Current.Request.ApplicationPath + path);
         }
 

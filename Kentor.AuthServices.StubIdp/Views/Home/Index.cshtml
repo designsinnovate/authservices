@@ -110,6 +110,11 @@ else
         @Html.ValidationMessageFor(m => m.AssertionModel.SessionIndex)
     </div>
 
+    <div class="hide-details">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
     <fieldset class="hide-details">
         <legend>AttributeStatements</legend>
         <div id="attributes-placeholder" style="display:none">
